@@ -1,30 +1,43 @@
 // если добавлять картинки, ОБЯЗАТЕЛЬНО измени  в .animated и .animatedTitle время
 //    для 6 картинок оно равно 36
-// и прописать бэкграунд
 
 (function( $ ){
 
     $.fn.fullSlideCss = function() {
 
         var rootForSlide = $('#full-slide-css'); // корневой элемент
-        var countSlide = rootForSlide.find('li').length;//количество изображений в слайдере
+        var imageSlide = rootForSlide.find('li');
+        var countSlide = imageSlide.length;//количество изображений в слайдере
 
         //bg for slides
             rootForSlide.find('li').each(function (i, elem){
-            console.log(i)
-            console.dir(elem)
-                $(elem).css('background', 'url("../images/' + i +'.jpg")')
+                elem.style.background = 'url("../images/' + i +'.jpg")';
+                elem.setAttribute('data-id', i)
         });
-
-
-        //rootForSlide.find('li span').each(function () {
-        //    $(this)
-        //
-        //
-        //});
 
         //thumbails
         rootForSlide.append("<div class='nav'></div>");
+
+        slideImages = function (imgId) {
+
+
+            var slideAnimated = rootForSlide.find(("[data-id='" + imgId + "']"));
+            slideAnimated.addClass('animated');
+
+            setTimeout(function(){
+                    slideAnimated.removeClass('animated')
+                }, 9000);
+
+            //setTimeout(this.slideImages.bind(this),[imgId], 9000); // аналог через встроенный метод
+
+            setTimeout(function(imgId){
+                ++imgId;
+                slideImages(imgId)
+                }, 6000, imgId)
+        }
+
+        slideImages(0);
+
 
         //
         //rootForSlide.each(function ()
@@ -43,9 +56,10 @@
 
     }
 
+
 })( jQuery );
 
-$('body').fullSlideCss();
+$('#full-slide-css').fullSlideCss();
 
 
 //$(document).ready(function(){
@@ -86,3 +100,4 @@ $('body').fullSlideCss();
 //    //slider
 //
 //});
+
