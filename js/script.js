@@ -22,19 +22,36 @@
 
 
             var slideAnimated = rootForSlide.find(("[data-id='" + imgId + "']"));
-            slideAnimated.addClass('animated');
+            slideAnimated.css({
+                'opacity': 1,
+                'transform': 'scale(1.1, 1.1)'
+            });
+            $('#full-slide-css').on('click', function(){
+                this.exit = true;
+                //console.log(this.exit)
+            })
 
             setTimeout(function(){
-                    slideAnimated.removeClass('animated')
-                }, 9000);
+                    slideAnimated.css({
+                        'opacity': 0,
+                        'transform': 'scale(1, 1)'
+                    });
+                console.log(this.exit)
+                if (exit) {
 
-            //setTimeout(this.slideImages.bind(this),[imgId], 9000); // аналог через встроенный метод
+                }
+                else if (imgId > countSlide-2) {
 
-            setTimeout(function(imgId){
-                ++imgId;
+                    imgId=0;
+
+                }else {
+                    imgId++;
+                }
                 slideImages(imgId)
-                }, 6000, imgId)
-        }
+
+                }, 9000, imgId, countSlide);
+
+        };
 
         slideImages(0);
 

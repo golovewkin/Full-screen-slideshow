@@ -8,11 +8,11 @@ body{
     overflow-x: hidden;
 }
 
-#full-slide-css {
-    -webkit-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    transition: opacity 1s;
+#full-slide-css li {
+    -webkit-transition: all 6s;
+    -o-transition: all 6s;
+    -moz-transition: all 6s;
+    transition: all 6s;
 }
 
 .nav {
@@ -48,11 +48,13 @@ body{
 
 
 .animated {
-    -webkit-animation: imageAnimation 36s linear infinite 0s ;
-    -moz-animation: imageAnimation 36s linear infinite 0s;
-    -o-animation: imageAnimation 36s linear infinite 0s;
-    -ms-animation: imageAnimation 36s linear infinite 0s;
-    animation: imageAnimation 36s linear infinite 0s;
+    opacity: 1;
+    /*transform: scale(1.1, 1.1);*/
+    /*-webkit-animation: imageAnimation 9s linear  ;*/
+    /*-moz-animation: imageAnimation 9s linear ;*/
+    /*-o-animation: imageAnimation 9s linear;*/
+    /*-ms-animation: imageAnimation 9s linear ;*/
+    /*animation: imageAnimation 9s linear;*/
 }
 .animatedTitle {
     -webkit-animation: titleAnimation 36s linear infinite 0s;
