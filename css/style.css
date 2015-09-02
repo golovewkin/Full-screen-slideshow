@@ -1,3 +1,10 @@
+#full-slide-css {
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
 .nav {
     position: relative;
 }
@@ -30,12 +37,7 @@
 
 }
 
-.cb-slideshow {
-    -webkit-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    transition: opacity 1s;
-}
+
 .animated {
     -webkit-animation: imageAnimation 36s linear infinite 0s ;
     -moz-animation: imageAnimation 36s linear infinite 0s;

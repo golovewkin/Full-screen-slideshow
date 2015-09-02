@@ -59,13 +59,7 @@ body{
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
-.ie7 body{
-	overflow:hidden;
-}
-a{
-	color: #333;
-	text-decoration: none;
-}
+
 .container{
 	position: relative;
 	text-align: center;
