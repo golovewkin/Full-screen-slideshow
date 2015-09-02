@@ -1,0 +1,53 @@
+.nav {
+    position: relative;
+}
+.wrapImg {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+}
+.nav img {
+    width: 100%;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
+.nav div {
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition:all .5s;
+    transition: all .5s;
+}
+.nav div:hover{
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+
+}
+
+.cb-slideshow {
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    transition: opacity 1s;
+}
+.animated {
+    -webkit-animation: imageAnimation 36s linear infinite 0s ;
+    -moz-animation: imageAnimation 36s linear infinite 0s;
+    -o-animation: imageAnimation 36s linear infinite 0s;
+    -ms-animation: imageAnimation 36s linear infinite 0s;
+    animation: imageAnimation 36s linear infinite 0s;
+}
+.animatedTitle {
+    -webkit-animation: titleAnimation 36s linear infinite 0s;
+    -moz-animation: titleAnimation 36s linear infinite 0s;
+    -o-animation: titleAnimation 36s linear infinite 0s;
+    -ms-animation: titleAnimation 36s linear infinite 0s;
+    animation: titleAnimation 36s linear infinite 0s;
+}
+
