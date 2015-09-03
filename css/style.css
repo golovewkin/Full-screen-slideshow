@@ -17,8 +17,9 @@ body{
 
 .nav {
     position: relative;
+    z-index: 10;
 }
-.wrapImg {
+.wrapImgNav {
     display: inline-block;
     width: 100px;
     height: 100px;
@@ -29,15 +30,13 @@ body{
     width: 100%;
     margin: 10px;
     cursor: pointer;
-}
-
-.nav div {
     -webkit-transition: all .5s;
     -o-transition: all .5s;
     -moz-transition:all .5s;
     transition: all .5s;
 }
-.nav div:hover{
+
+.nav img:hover{
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
