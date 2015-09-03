@@ -1,79 +1,96 @@
-// если добавлять картинки, ОБЯЗАТЕЛЬНО измени  в .animated и .animatedTitle время
-//    для 6 картинок оно равно 36
+(function($) {
+    $.fullSlideCss = function() {
+        var fsc = {
 
-(function( $ ){
+            rootForSlide : $('#full-slide-css'), // корневой элемент
+            imageSlide : $('#full-slide-css').find('li'),
+            countSlide: $('#full-slide-css').find('li').length,//количество изображений в слайдере
+            click : false, // был ли клик
 
-    $.fn.fullSlideCss = function() {
+            init: function( ) {
 
-        var rootForSlide = $('#full-slide-css'); // корневой элемент
-        var imageSlide = rootForSlide.find('li');
-        var countSlide = imageSlide.length;//количество изображений в слайдере
-        var click = false;
+                //bg for slides
+                fsc.rootForSlide.find('li').each(function (i, elem){
+                    elem.style.background = 'url("../images/' + i +'.jpg")';
+                    elem.setAttribute('data-id', i)
+                });
 
-        //bg for slides
-            rootForSlide.find('li').each(function (i, elem){
-                elem.style.background = 'url("../images/' + i +'.jpg")';
-                elem.setAttribute('data-id', i)
-        });
+                //thumbails
+                fsc.rootForSlide.append("<div class='nav'></div>").each(function () {
 
-        //thumbails
-        rootForSlide.append("<div class='nav'></div>").each(function () {
-
-            for (var i = 0; i <= countSlide-1; i++) {
-                $('.nav').append("<div class='wrapImgNav'><img class='nav-" + i + "' src='../images/" + i + ".jpg'/></div>")
-
-            }
-
-        });
-
-
-
-        //do slide
-        slideImages = function(imgId) {
-
-            var slideAnimated = rootForSlide.find(("[data-id='" + imgId + "']"));
-            slideAnimated.css({
-                'opacity': 1,
-                'transform': 'scale(1.1, 1.1)'
-            });
-
-          setTimeout(function(){
-                    slideAnimated.css({
+                    for (var i = 0; i <= fsc.countSlide-1; i++) {
+                        $('.nav').append("<div class='wrapImgNav'><img class='nav-" + i + "' src='../images/" + i + ".jpg'/></div>")
+                    }
+                });
+                fsc.slideImages(0);
+                $('#full-slide-css').find('.nav').on ('click', function(e){
+                    fsc.slideAnimated.css({
                         'opacity': 0,
                         'transform': 'scale(1, 1)'
                     });
 
-                if (click) {
-                    click = false;
-                    return;
+                    fsc.onclick(e)
+                })
+            },
+            slideImages: function(imgId) {
+
+                fsc.slideAnimated = fsc.rootForSlide.find(("[data-id='" + imgId + "']"));
+                fsc.slideAnimated.css({
+                        'opacity': 1,
+                        'transform': 'scale(1.1, 1.1)'
+                    });
+
+                fsc.timerId = setTimeout (function(){
+                    fsc.slideAnimated.css({
+                            'opacity': 0,
+                            'transform': 'scale(1, 1)'
+                        });
+
+                         //if (fsc.click) {
+                         //
+                         //
+                         //}
+
+                        if (imgId >= fsc.countSlide-1) {
+                            imgId=0;
+                        } else {
+                            imgId++;
+                        }
+                        //
+                        fsc.slideImages(imgId)
+
+                    }, 6000, imgId, fsc.countSlide);
+
+
+            },
+            onclick: function(e) {
+
+                var max_id;
+                max_id = setTimeout(function () {});
+                while (max_id--) {
+                    clearTimeout(max_id);
                 }
 
-               else if (imgId >= countSlide-1) {
-                    imgId=0;
-                } else {
-                    imgId++;
-                }
+                var newimgId = e.target.className.slice(4,5);
+                fsc.slideImages(newimgId)
 
-                slideImages(imgId)
-
-                }, 9000, imgId, countSlide);
-
+            }
         };
+        return {
+            init: fsc.init
+            //close: jpm.closeMenu,
+            //someComplexMethod: function( ) {
+            ////…
+            //}
+        };
+    };
+})(jQuery);
 
-        slideImages(0);
+var fsc = $.fullSlideCss();
 
-        this.find('.nav').on ('click', function(e){
-            var newimgId = e.target.className.slice(4,5)
-
-            click = true;
-            slideImages(newimgId)
-        })
-
-    }
+fsc.init( );
 
 
-})( jQuery );
 
-$('#full-slide-css').fullSlideCss();
 
 
