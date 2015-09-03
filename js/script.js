@@ -3,11 +3,10 @@
         var fsc = {
 
             rootForSlide : $('#full-slide-css'), // корневой элемент
-            imageSlide : $('#full-slide-css').find('li'),
-            countSlide: $('#full-slide-css').find('li').length,//количество изображений в слайдере
-            click : false, // был ли клик
 
             init: function( ) {
+                fsc.imageSlide = fsc.rootForSlide.find('li');
+                fsc.countSlide = fsc.imageSlide.length;//количество изображений в слайдере
 
                 //bg for slides
                 fsc.rootForSlide.find('li').each(function (i, elem){
@@ -46,42 +45,33 @@
                             'transform': 'scale(1, 1)'
                         });
 
-                         //if (fsc.click) {
-                         //
-                         //
-                         //}
 
                         if (imgId >= fsc.countSlide-1) {
                             imgId=0;
                         } else {
                             imgId++;
                         }
-                        //
+
                         fsc.slideImages(imgId)
 
                     }, 6000, imgId, fsc.countSlide);
-
-
             },
             onclick: function(e) {
-
+                //Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
                 var max_id;
                 max_id = setTimeout(function () {});
                 while (max_id--) {
                     clearTimeout(max_id);
                 }
+                //Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
 
                 var newimgId = e.target.className.slice(4,5);
                 fsc.slideImages(newimgId)
-
             }
         };
+
         return {
             init: fsc.init
-            //close: jpm.closeMenu,
-            //someComplexMethod: function( ) {
-            ////…
-            //}
         };
     };
 })(jQuery);
