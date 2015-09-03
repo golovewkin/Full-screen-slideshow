@@ -18,43 +18,36 @@
         //thumbails
         rootForSlide.append("<div class='nav'></div>");
 
-        slideImages = function (imgId) {
+        function slideImages (imgId) {
 
 
             var slideAnimated = rootForSlide.find(("[data-id='" + imgId + "']"));
             slideAnimated.css({
-                'opacity': 1,
-                'transform': 'scale(1.1, 1.1)'
+                'transform': 'scale(1.1, 1.1)',
+                'opacity': 1
             });
-            $('#full-slide-css').on('click', function(){
-                this.exit = true;
-                //console.log(this.exit)
-            })
 
-            setTimeout(function(){
+          var timerId = setTimeout(function(){
                     slideAnimated.css({
                         'opacity': 0,
                         'transform': 'scale(1, 1)'
                     });
-                console.log(this.exit)
-                if (exit) {
 
-                }
-                else if (imgId > countSlide-2) {
-
+               if (imgId >= countSlide-1) {
                     imgId=0;
-
                 }else {
                     imgId++;
                 }
+
                 slideImages(imgId)
 
                 }, 9000, imgId, countSlide);
 
-        };
+        }
 
         slideImages(0);
 
+        //});
 
         //
         //rootForSlide.each(function ()
