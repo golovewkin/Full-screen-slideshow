@@ -57,7 +57,7 @@
                     }, 6000, imgId, fsc.countSlide);
             },
             onclick: function(e) {
-                //Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
+                //Обнуление всех таймеров Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
                 var max_id;
                 max_id = setTimeout(function () {});
                 while (max_id--) {
