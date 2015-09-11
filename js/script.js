@@ -45,7 +45,6 @@
                             'transform': 'scale(1, 1)'
                         });
 
-
                         if (imgId >= fsc.countSlide-1) {
                             imgId=0;
                         } else {
