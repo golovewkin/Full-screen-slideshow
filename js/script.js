@@ -1,71 +1,79 @@
-(function($) {
-    $.fullSlideCss = function() {
+(function ($) {
+    $.fullSlideCss = function () {
         var fsc = {
 
-            rootForSlide : $('#full-slide-css'), // корневой элемент
+            rootForSlide: $('#full-slide-css'), // корневой элемент
 
-            init: function( ) {
+            init: function () {
                 fsc.imageSlide = fsc.rootForSlide.find('li');
                 fsc.countSlide = fsc.imageSlide.length;//количество изображений в слайдере
 
                 //bg for slides
-                fsc.rootForSlide.find('li').each(function (i, elem){
-                    elem.style.background = 'url("../images/' + i +'.jpg")';
-                    elem.setAttribute('data-id', i)
+                fsc.rootForSlide.find('li').each(function (i, elem) {
+
+                    elem.style.background = 'url("' + window.location.href + 'images/' + i + '.jpg")';
+                    console.log(elem.style.background)
+                    elem.setAttribute('data-id', i);
                 });
 
                 //thumbails
                 fsc.rootForSlide.append("<div class='nav'></div>").each(function () {
 
-                    for (var i = 0; i <= fsc.countSlide-1; i++) {
-                        $('.nav').append("<div class='wrapImgNav'><img class='nav-" + i + "' src='../images/" + i + ".jpg'/></div>")
+                    for (var i = 0; i <= fsc.countSlide - 1; i++) {
+                        $('.nav').append("<div class='wrapImgNav'><img class='nav-" + i + "'src=" + window.location.href + "images/" + i + ".jpg ></div>")
                     }
                 });
                 fsc.slideImages(0);
-                $('#full-slide-css').find('.nav').on ('click', function(e){
+                $('#full-slide-css').find('.nav').on('click', function (e) {
+
+                    fsc.onclick(e)
+                })
+            },
+            slideImages: function (imgId) {
+
+                fsc.slideAnimated = fsc.rootForSlide.find(("[data-id='" + imgId + "']"));
+                fsc.slideAnimated.css({
+                    'opacity': 1,
+                    'transform': 'scale(1.1, 1.1)'
+                });
+
+                setTimeout(function () {
                     fsc.slideAnimated.css({
                         'opacity': 0,
                         'transform': 'scale(1, 1)'
                     });
 
-                    fsc.onclick(e)
-                })
-            },
-            slideImages: function(imgId) {
+                    if (imgId >= fsc.countSlide - 1) {
+                        imgId = 0;
+                    } else {
+                        imgId++;
+                    }
+                    fsc.timersZeroing();
+                    fsc.slideImages(imgId)
 
-                fsc.slideAnimated = fsc.rootForSlide.find(("[data-id='" + imgId + "']"));
+                }, 6000, imgId, fsc.countSlide);
+            },
+            onclick: function (e) {
+
                 fsc.slideAnimated.css({
-                        'opacity': 1,
-                        'transform': 'scale(1.1, 1.1)'
-                    });
+                    'opacity': 0,
+                    'transform': 'scale(1, 1)'
+                });
 
-                fsc.timerId = setTimeout (function(){
-                    fsc.slideAnimated.css({
-                            'opacity': 0,
-                            'transform': 'scale(1, 1)'
-                        });
+                fsc.timersZeroing();
 
-                        if (imgId >= fsc.countSlide-1) {
-                            imgId=0;
-                        } else {
-                            imgId++;
-                        }
-
-                        fsc.slideImages(imgId)
-
-                    }, 6000, imgId, fsc.countSlide);
+                var newimgId = e.target.className.slice(4, 5);
+                fsc.slideImages(newimgId)
             },
-            onclick: function(e) {
-                //Обнуление всех таймеров Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
+            timersZeroing: function () {
+                //Обнуление всех таймеров Это я нашел http://dmitrypodgorniy.com/blog/
                 var max_id;
-                max_id = setTimeout(function () {});
+                max_id = setTimeout(function () {
+                });
                 while (max_id--) {
                     clearTimeout(max_id);
                 }
-                //Это я нашел у чувака  http://dmitrypodgorniy.com/blog/
-
-                var newimgId = e.target.className.slice(4,5);
-                fsc.slideImages(newimgId)
+                //Это я нашел http://dmitrypodgorniy.com/blog/
             }
         };
 
@@ -77,7 +85,7 @@
 
 var fsc = $.fullSlideCss();
 
-fsc.init( );
+fsc.init();
 
 
 
