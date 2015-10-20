@@ -73,7 +73,7 @@
                 while (max_id--) {
                     clearTimeout(max_id);
                 }
-                //Это я нашел http://dmitrypodgorniy.com/blog/
+                //Обнуление всех таймеров 
             }
         };
 
