@@ -1,10 +1,12 @@
 (function ($) {
     $.fullSlideCss = function () {
+
         var fsc = {
 
-            rootForSlide: $('#full-slide-css'), // корневой элемент
+            rootForSlide: $('#full-slide'), // корневой элемент
 
             init: function () {
+
                 fsc.imageSlide = fsc.rootForSlide.find('li');
                 fsc.countSlide = fsc.imageSlide.length;//количество изображений в слайдере
 
@@ -12,7 +14,6 @@
                 fsc.rootForSlide.find('li').each(function (i, elem) {
 
                     elem.style.background = 'url("' + window.location.href + 'images/' + i + '.jpg")';
-                    console.log(elem.style.background)
                     elem.setAttribute('data-id', i);
                 });
 
@@ -20,11 +21,12 @@
                 fsc.rootForSlide.append("<div class='nav'></div>").each(function () {
 
                     for (var i = 0; i <= fsc.countSlide - 1; i++) {
+
                         $('.nav').append("<div class='wrapImgNav'><img class='nav-" + i + "'src=" + window.location.href + "images/" + i + ".jpg ></div>")
                     }
                 });
                 fsc.slideImages(0);
-                $('#full-slide-css').find('.nav').on('click', function (e) {
+                fsc.rootForSlide.find('.nav').on('click', function (e) {
 
                     fsc.onclick(e)
                 })
@@ -83,11 +85,4 @@
     };
 })(jQuery);
 
-var fsc = $.fullSlideCss();
-
-fsc.init();
-
-
-
-
-
+var fsc = $.fullSlideCss().init();
